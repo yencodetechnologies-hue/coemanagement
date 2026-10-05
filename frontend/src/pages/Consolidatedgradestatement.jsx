@@ -5,7 +5,7 @@ import {
   getConsolidatedStatement,
   issueConsolidatedStatement,
 } from '../config/Consolidatedstatement';
-import './ConsolidatedGradeStatement.css';
+import './Consolidatedgradestatement.css';
 
 const EMPTY = { instCode: '', course: '', batch: '', regNo: '' };
 const ORDER = ['instCode', 'course', 'batch', 'regNo'];

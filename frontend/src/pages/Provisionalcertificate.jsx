@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getConsolidatedOptions } from '../config/Consolidatedstatement'; // same dropdown lists
 import { getProvisionalCertificate, issueProvisionalCertificate } from '../config/Provisionalcertificate';
-import './ProvisionalCertificate.css';
+import './Provisionalcertificate.css';
 
 const EMPTY = { instCode: '', course: '', batch: '', regNo: '' };
 const ORDER = ['instCode', 'course', 'batch', 'regNo'];
