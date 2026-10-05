@@ -1,5 +1,3 @@
-// pages/SectionPage.jsx  – stats + table page for any menu that has no dedicated screen yet
-import React from 'react';
 
 const sectionData = {
   Dashboard: {

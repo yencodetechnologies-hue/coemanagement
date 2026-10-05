@@ -1,5 +1,4 @@
-// pages/SettingsRoute.jsx  – gives the Settings page its data from the layout
-import React from 'react';
+
 import { useOutletContext } from 'react-router-dom';
 import SettingsPage from './Settings';
 

@@ -5,7 +5,7 @@ import {
   publishResults,
   withdrawResults,
 } from '../config/Resultprocessing';
-import './ResultProcessing.css';
+import './Resultprocessing.css';
 
 const ORDER = ['instCode', 'course', 'batch', 'semester', 'examYear'];
 const EMPTY = { instCode: '', course: '', batch: '', semester: '', examYear: '' };

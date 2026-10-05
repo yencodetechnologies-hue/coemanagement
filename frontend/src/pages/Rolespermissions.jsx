@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { createRole, deleteRole, getRoles, updateRolePermissions } from '../config/Roles';
-import './RolesPermissions.css';
+import './Rolespermissions.css';
 
 export default function RolesPermissions() {
   const [actions, setActions] = useState([]);

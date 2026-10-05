@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { getAuditFilters, getAuditLogs } from '../config/Auditlog';
-import './AuditLog.css';
+import './Auditlog.css';
 
 const EMPTY = { search: '', staffId: '', module: '', action: '', from: '', to: '' };
 const NO_FILTERS = { modules: [], actions: [], staff: [] };

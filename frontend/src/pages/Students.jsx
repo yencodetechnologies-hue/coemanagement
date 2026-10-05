@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import  { useCallback, useEffect, useRef, useState } from 'react';
 import { Plus, Pencil, Trash2, Eye, Search, X, ChevronLeft, ChevronRight, Upload } from 'lucide-react';
 import { studentsApi } from '../config/Studentsapi';
 import { institutionsApi } from '../config/Institutionsapi';

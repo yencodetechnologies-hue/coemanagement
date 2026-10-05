@@ -1,9 +1,4 @@
-/* RolesPermissions.css
-   Font family is inherited from .dashboard-container ('Public Sans'); titles use var(--serif).
-   Colours come from the dashboard variables, so dark theme works.
 
-   Note: dashboard.css resets font and colour on every button, input and select, so rules on
-   those elements carry the .rl-page prefix to win. */
 
 .rl-page {
   --rl-tint: color-mix(in srgb, var(--bg) 60%, var(--card));

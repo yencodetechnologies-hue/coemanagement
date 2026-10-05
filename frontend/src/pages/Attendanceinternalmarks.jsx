@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import  { useEffect, useMemo, useRef, useState } from 'react';
 import { institutionsApi } from '../config/Institutionsapi';
 import { coursesApi } from '../config/Coursesapi';
 import { curriculumApi } from '../config/CurriculumMasterapi';

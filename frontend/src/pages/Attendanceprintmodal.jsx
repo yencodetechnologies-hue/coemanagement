@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 /* ---------- Letterhead: edit these to match your university ---------- */

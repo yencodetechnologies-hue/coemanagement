@@ -1,5 +1,5 @@
 // layouts/DashboardLayout.jsx  – sidebar + header stay fixed, the page changes with the URL
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';

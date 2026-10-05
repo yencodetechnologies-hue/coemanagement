@@ -1,5 +1,5 @@
 // components/Header.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Menu, ChevronDown, Contrast, Check } from 'lucide-react';
 import { NAV_GROUPS } from './Sidebar';

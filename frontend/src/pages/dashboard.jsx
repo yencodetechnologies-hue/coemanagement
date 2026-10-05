@@ -1,5 +1,5 @@
 // Dashboard.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar, { NAV_GROUPS } from '../components/Sidebar';
 import Header from '../components/Header';

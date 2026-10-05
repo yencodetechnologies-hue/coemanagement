@@ -1,5 +1,4 @@
-// components/Sidebar.jsx
-import React from 'react';
+
 import { NavLink } from 'react-router-dom';
 import {
   LayoutGrid, User, Landmark, BookOpen, Layers, ListChecks, CheckSquare,
