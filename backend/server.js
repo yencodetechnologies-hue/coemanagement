@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const settingsRoutes = require('./routes/settings');
+const settingsRoutes = require('./routes/Settings');
 const institutionRoutes = require('./routes/Institutions');
 const coeStaffRoutes = require('./routes/coeStaffRoutes');
 

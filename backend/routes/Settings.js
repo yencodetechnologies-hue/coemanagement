@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const c = require('../controllers/settingsController');
+const c = require('../controllers/Settingscontroller');
 
 router.get('/', c.getSettings);
 router.put('/university', c.updateUniversity);
