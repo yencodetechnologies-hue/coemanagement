@@ -1,0 +1,43 @@
+const mongoose = require('mongoose');
+
+const curriculumSchema = new mongoose.Schema({
+  instCode: { type: String, required: true, default: 'SBCN', trim: true },
+  course: { type: String, required: true, trim: true },
+  regulation: { type: String, required: true, default: '2022', trim: true },
+  batch: { type: String, default: '', trim: true },
+  mode: { type: String, required: true, default: 'REGULAR', trim: true },
+  department: { type: String, required: true, default: 'Nursing', trim: true },
+  semester: { type: String, required: true, default: '2', trim: true },
+  subCodeP1: { type: String, required: true, trim: true },
+  subNameP1: { type: String, required: true, trim: true },
+  component: { type: String, required: true, default: 'Theory', trim: true },
+  subjectCategory: { type: String, required: true, default: 'CORE', trim: true },
+  theoryHour: { type: Number, default: 0 },
+  subCodeP2: { type: String, default: '', trim: true },
+  subNameP2: { type: String, default: '', trim: true },
+  practicalHour: { type: Number, default: 0 },
+  internalMinMark: { type: Number, required: true, default: 12.5 },
+  internalMaxMark: { type: Number, required: true, default: 25 },
+  externalMinMark: { type: Number, required: true, default: 37.5 },
+  externalMaxMark: { type: Number, required: true, default: 75 },
+  practicalIaMin: { type: Number, default: 0 },
+  practicalIaMax: { type: Number, default: 0 },
+  oralMin: { type: Number, default: 0 },
+  oralMax: { type: Number, default: 0 },
+  mcqMin: { type: Number, default: 0 },
+  mcqMax: { type: Number, default: 0 },
+  subCodeOther: { type: String, default: '', trim: true },
+  subNameOther: { type: String, default: '', trim: true },
+  otherMin: { type: Number, default: 0 },
+  otherMax: { type: Number, default: 0 },
+  credit: { type: Number, required: true, default: 3 },
+  examConductedBy: { type: String, required: true, default: 'University', trim: true },
+  addedToSgpa: { type: String, required: true, default: 'Yes', trim: true },
+  letterGradeAwarded: { type: String, required: true, default: 'Yes', trim: true },
+  examAmount: { type: Number, required: true, default: 500 },
+  status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
+  verified: { type: String, enum: ['Yes', 'No'], default: 'No' },
+  condition: { type: String, default: '', trim: true }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Curriculum', curriculumSchema);

@@ -1,0 +1,95 @@
+/* ExternalMarkEntry.css
+   Uses the dashboard.css variables (--card, --line, --text, --muted, --navy, --gold,
+   --accent, --ok-*, --bad-*, --serif), so light / dark theme follow the dashboard. */
+
+.eme-page {
+  /* "below minimum" has no dashboard colour, so it is defined here */
+  --eme-low-bg: #fff0d9; --eme-low-text: #9a5700;
+  display: flex; flex-direction: column; gap: 24px; min-width: 0;
+}
+.dashboard-container[data-theme='dark'] .eme-page { --eme-low-bg: rgba(255, 180, 70, .16); --eme-low-text: #ffc67a; }
+
+/* ---------- heading ----------
+   (.eme-page prefix on button / input / select rules: dashboard.css resets font and colour
+   on those elements, so the extra class is needed to win) */
+.eme-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.eme-head h2 { margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 600; }
+.eme-head p { margin: 4px 0 0; max-width: 640px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+.eme-page .eme-btn {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 500; cursor: pointer;
+  background: var(--navy); border: 1px solid var(--navy); border-radius: 8px; color: #fff;
+}
+.eme-page .eme-btn:hover:not(:disabled) { opacity: .9; }
+.eme-page .eme-btn:disabled { opacity: .55; cursor: not-allowed; }
+.dashboard-container[data-theme='dark'] .eme-btn { background: var(--gold); border-color: var(--gold); color: #101d5c; }
+
+/* ---------- message ---------- */
+.eme-msg { padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+.eme-msg.success { background: var(--ok-bg); color: var(--ok-text); }
+.eme-msg.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- card + filters ---------- */
+.eme-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+
+.eme-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 18px; padding: 20px; }
+.eme-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.eme-field > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.eme-page .eme-field select,
+.eme-page .eme-field input {
+  width: 100%; height: 36px; padding: 0 12px; font-size: 13px;
+  background: var(--field); border: 1px solid var(--line); border-radius: 8px;
+}
+.eme-field select { padding-right: 8px; cursor: pointer; }
+.eme-field-packet { flex: 0 1 420px; min-width: 240px; }
+.eme-field-limits { flex: 0 0 140px; }
+.eme-page .eme-field-limits input { background: color-mix(in srgb, var(--bg) 60%, var(--card)); color: var(--muted); }
+
+.eme-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-left: auto; min-height: 36px; font-size: 12px; color: var(--muted); }
+.eme-summary b { font-weight: 600; color: var(--text); }
+.eme-summary .low b { color: var(--eme-low-text); }
+.eme-summary .unsaved { padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: var(--eme-low-bg); color: var(--eme-low-text); }
+
+/* ---------- table ---------- */
+.eme-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+.eme-table { width: 100%; border-collapse: collapse; text-align: left; }
+.eme-table th {
+  padding: 12px 20px; font-size: 11px; font-weight: 600; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.eme-table td { padding: 8px 20px; font-size: 13px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.eme-table tbody tr:last-child td { border-bottom: 0; }
+.eme-table td b { font-weight: 600; }
+.eme-table th.sno { width: 90px; }
+.eme-table td.sno { color: var(--muted); }
+.eme-table th.num, .eme-table td.num { text-align: right; }
+.eme-table th:last-child, .eme-table td:last-child { width: 30%; }
+.eme-empty { padding: 40px 24px !important; text-align: center; color: var(--muted); }
+
+/* mark box */
+.eme-page .eme-mark {
+  width: 90px; height: 36px; padding: 0 10px; font-size: 13px; font-weight: 600; text-align: center;
+  background: var(--field); border: 1px solid var(--line); border-radius: 8px;
+  -moz-appearance: textfield; appearance: textfield;
+}
+.eme-page .eme-mark::-webkit-outer-spin-button,
+.eme-page .eme-mark::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.eme-page .eme-mark.bad { border-color: var(--bad-text); background: var(--bad-bg); }
+
+/* check pill (same shape as the dashboard .badge) */
+.eme-pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.eme-pill.ok { background: var(--ok-bg); color: var(--ok-text); }
+.eme-pill.low { background: var(--eme-low-bg); color: var(--eme-low-text); }
+.eme-pill.bad { background: var(--bad-bg); color: var(--bad-text); }
+.eme-pill.pending { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .eme-head .eme-btn { width: 100%; }
+  .eme-field-packet, .eme-field-limits { flex: 1 1 100%; }
+  .eme-summary { margin-left: 0; }
+  .eme-table th, .eme-table td { padding-left: 12px; padding-right: 12px; }
+  .eme-table th.sno { width: 52px; }
+}

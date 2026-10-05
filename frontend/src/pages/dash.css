@@ -1,0 +1,91 @@
+/* DashboardPage.css  (separate from your dashboard.css, which styles the layout)
+   Font family is inherited from .dashboard-container ('Public Sans'); titles and big numbers
+   use var(--serif). Colours come from the dashboard variables, so dark theme works.
+
+   Note: dashboard.css resets font and colour on every button, input and select, so rules on
+   those elements carry the .dh-page prefix to win. */
+
+.dh-page { display: flex; flex-direction: column; gap: 16px; min-width: 0; color: var(--text); }
+
+/* ---------- heading ---------- */
+.dh-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.dh-head h1 { margin: 0 0 4px; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.25; color: var(--text); }
+.dh-head p { margin: 0; max-width: 560px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.dh-page .dh-course {
+  height: 34px; min-width: 150px; padding: 0 8px 0 12px; font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+
+.dh-alert { margin: 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- examination cycle (dark banner in both themes) ---------- */
+.dh-cycle { padding: 20px 22px 18px; border-radius: 12px; background: #141c4d; color: #fff; }
+.dh-cycle h2 { margin: 0 0 4px; font-family: var(--serif); font-size: 19px; font-weight: 600; color: #fff; }
+.dh-cycle > p { margin: 0 0 16px; font-size: 12px; color: #b9c2ec; }
+
+.dh-steps { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0 18px; margin: 0; padding: 0; list-style: none; }
+.dh-steps li { position: relative; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.dh-dot {
+  position: relative; z-index: 1; width: 26px; height: 26px; margin-bottom: 8px; display: grid; place-items: center;
+  border: 1.5px solid #6f7ab8; border-radius: 50%; background: #141c4d;
+  font-size: 12px; font-weight: 700; color: #cdd4f5;
+}
+/* line to the next step */
+.dh-steps li:not(:last-child)::before {
+  content: ''; position: absolute; top: 13px; left: 26px; right: -18px; height: 1px; background: #3d4885;
+}
+.dh-steps li.active .dh-dot { border-color: var(--gold); color: var(--gold); }
+.dh-steps li.done .dh-dot { border-color: var(--gold); background: var(--gold); color: #141c4d; }
+.dh-steps li.done::before { background: #cdd4f5; }
+.dh-steps b { font-size: 13px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dh-steps small { font-size: 11px; color: #b9c2ec; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dh-bar { display: block; height: 3px; margin-top: 6px; border-radius: 999px; background: #2f3a78; overflow: hidden; }
+.dh-bar span { display: block; height: 100%; border-radius: 999px; background: var(--gold); }
+
+/* ---------- figures ---------- */
+.dh-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.dh-stat { display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.dh-stat-label { font-size: 12px; color: var(--muted); }
+.dh-stat-value { font-family: var(--serif); font-size: 24px; font-weight: 700; line-height: 1.35; }
+.dh-stat-note { font-size: 11px; color: var(--accent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- three lists ---------- */
+.dh-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.dh-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.dh-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.dh-card-head h3 { margin: 0; font-family: var(--serif); font-size: 15px; font-weight: 600; }
+
+.dh-page .dh-link {
+  padding: 4px 8px; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: underline;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--accent);
+}
+.dh-page .dh-btn {
+  flex: none; height: 30px; padding: 0 10px; font-size: 12px; font-weight: 600; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.dh-page .dh-btn:hover, .dh-page .dh-link:hover { border-color: var(--accent); color: var(--accent); }
+
+.dh-list { margin: 0; padding: 6px 16px 10px; list-style: none; }
+.dh-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.dh-list li:last-child { border-bottom: 0; }
+.dh-list li > div { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.dh-list li > div.r { flex: none; align-items: flex-end; text-align: right; }
+.dh-list b { font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
+.dh-list span { font-size: 13px; }
+.dh-list small { font-size: 11px; color: var(--muted); }
+.dh-list li.dh-empty { justify-content: flex-start; padding: 18px 0; font-size: 13px; color: var(--muted); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1150px) {
+  .dh-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .dh-steps li:nth-child(4)::before { display: none; }
+  .dh-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .dh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .dh-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dh-steps li::before { display: none; }
+  .dh-stats { grid-template-columns: 1fr; }
+}

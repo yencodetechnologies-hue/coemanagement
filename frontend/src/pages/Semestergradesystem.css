@@ -1,0 +1,137 @@
+/* SemesterGradeStatement.css
+   Page chrome uses the dashboard variables (font family inherited from .dashboard-container,
+   title in var(--serif)), so dark theme works.
+   The A4 sheet (.gs-sheet) uses FIXED colours: it is paper, and the printed copy is portalled
+   into <body>, outside .dashboard-container, where the dashboard variables do not exist.
+
+   Note: dashboard.css resets font and colour on every button, input and select, so rules on
+   those elements carry the .gs-page prefix to win. */
+
+.gs-page {
+  --gs-tint: color-mix(in srgb, var(--bg) 60%, var(--card));
+  --gs-amber-bg: #fff0d9; --gs-amber-text: #9a5700;
+  display: flex; flex-direction: column; gap: 16px; min-width: 0;
+  color: var(--text);
+}
+.dashboard-container[data-theme='dark'] .gs-page { --gs-amber-bg: rgba(255, 180, 70, .16); --gs-amber-text: #ffc67a; }
+
+/* ---------- heading ---------- */
+.gs-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.gs-head h1 { margin: 0 0 4px; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.25; color: var(--text); }
+.gs-head p { margin: 0; max-width: 520px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.gs-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.gs-page .gs-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.gs-page .gs-btn:disabled { opacity: .5; cursor: not-allowed; }
+.gs-page .gs-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.gs-page .gs-btn.primary:hover:not(:disabled) { opacity: .9; }
+.dashboard-container[data-theme='dark'] .gs-page .gs-btn.primary { background: var(--gold); border-color: var(--gold); color: #101d5c; }
+.gs-page .gs-btn.outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+
+.gs-alert { margin: 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- card + filters ---------- */
+.gs-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.gs-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 10px; padding: 14px 18px; background: var(--gs-tint); border-bottom: 1px solid var(--line); }
+.gs-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--muted); }
+.gs-page .gs-field select {
+  height: 34px; width: 132px; padding: 0 8px 0 10px; font-size: 13px; font-weight: 400; cursor: pointer;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.gs-page .gs-field.wide select { width: 240px; }
+
+.gs-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 9px 18px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line); }
+.gs-pill { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.gs-pill.draft { background: var(--gs-amber-bg); color: var(--gs-amber-text); }
+.gs-pill.ok { background: var(--ok-bg); color: var(--ok-text); }
+
+/* grey desk behind the paper */
+.gs-preview { margin: 16px; padding: 14px; overflow-x: auto; border-radius: 8px; background: color-mix(in srgb, var(--muted) 16%, var(--card)); }
+.gs-empty { margin: 0; padding: 40px 20px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* =====================================================================
+   THE A4 SHEET (fixed colours, same on screen and on paper)
+   ===================================================================== */
+.gs-sheet {
+  box-sizing: border-box; width: 210mm; min-height: 297mm; margin: 0 auto; padding: 14mm 11mm 12mm;
+  display: flex; flex-direction: column;
+  background: #fff; color: #1a2148;
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-size: 10.5px; line-height: 1.4;
+  box-shadow: 0 1px 4px rgba(16, 29, 92, .18);
+}
+.gs-sheet *, .gs-sheet *::before, .gs-sheet *::after { box-sizing: border-box; }
+
+.gs-header { display: flex; align-items: center; gap: 12px; }
+.gs-logo {
+  flex: none; width: 58px; height: 58px; display: grid; place-items: center; text-align: center;
+  border: 1.5px solid #1a2148; border-radius: 50%; font-size: 10px; font-weight: 700; line-height: 1.1;
+}
+.gs-head-text { flex: 1; padding-right: 70px; text-align: center; }
+.gs-head-text h1 { margin: 0 0 3px; font-size: 15px; font-weight: 700; line-height: 1.35; text-transform: uppercase; letter-spacing: .01em; }
+.gs-head-text p { margin: 0; font-size: 8.5px; font-weight: 600; color: #2a3a9a; }
+.gs-title { margin: 8px 0 6px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; }
+.gs-rule { margin: 0; border: 0; border-top: 1.5px solid #1a2148; }
+
+.gs-serial { margin: 6px 0 0; text-align: right; font-size: 9.5px; }
+.gs-serial.draft { font-weight: 700; letter-spacing: .08em; color: #9a5700; }
+
+.gs-box { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 18px; margin: 6px 0 10px; padding: 8px 10px; border: 1px solid #1a2148; }
+.gs-pair { display: flex; gap: 6px; min-width: 0; }
+.gs-pair.wide { grid-column: 1 / -1; }
+.gs-pair span { flex: none; width: 118px; }
+.gs-pair b { font-weight: 700; }
+.gs-pair em { font-style: normal; font-weight: 600; }
+
+.gs-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.gs-table th, .gs-table td { padding: 4px 4px; border: 1px solid #1a2148; vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+.gs-table th { font-size: 9px; font-weight: 700; text-align: center; vertical-align: middle; line-height: 1.25; overflow-wrap: normal; }
+.gs-table td { font-size: 9.5px; height: 44px; }
+.gs-table td.c { text-align: center; }
+.gs-table td b { font-weight: 700; }
+.gs-table thead { display: table-header-group; }
+.gs-table tr { break-inside: avoid; }
+
+.gs-note { margin: 6px 0 0; font-size: 8.5px; color: #2a3a9a; }
+
+.gs-sgpa { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding: 7px 10px; border: 1px dashed #1a2148; font-size: 10px; }
+.gs-sgpa b { font-weight: 700; }
+
+.gs-footer { display: flex; justify-content: space-between; margin-top: auto; padding-top: 44px; }
+.gs-sign { display: flex; flex-direction: column; align-items: center; width: 170px; }
+.gs-sign i { display: block; min-height: 15px; font-style: normal; font-weight: 600; }
+.gs-sign span { width: 100%; padding-top: 4px; border-top: 1px solid #1a2148; text-align: center; font-weight: 700; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .gs-head { align-items: flex-start; }
+  .gs-actions { width: 100%; }
+  .gs-actions .gs-btn { flex: 1; }
+  .gs-field { flex: 1 1 calc(50% - 5px); }
+  .gs-field.wide { flex: 1 1 100%; }
+  .gs-page .gs-field select, .gs-page .gs-field.wide select { width: 100%; }
+  .gs-preview { margin: 10px; padding: 8px; }
+}
+
+/* =====================================================================
+   PRINT: only the portalled copies are printed, one candidate per page
+   ===================================================================== */
+.print-root { display: none; }
+
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+
+  body { background: #fff !important; }
+  body > *:not(.print-root) { display: none !important; }
+  .print-root { display: block; }
+
+  .gs-print .gs-sheet {
+    width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none;
+    break-after: page; page-break-after: always;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .gs-print .gs-sheet:last-child { break-after: auto; page-break-after: auto; }
+}

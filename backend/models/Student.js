@@ -1,0 +1,42 @@
+const mongoose = require('mongoose');
+
+const studentSchema = new mongoose.Schema({
+  admissionNo: { type: String, required: true, unique: true, trim: true },
+  batch: { type: String, required: true },
+  studentName: { type: String, required: true, trim: true },
+  registerNo: { type: String, required: true, unique: true, trim: true },
+  dob: { type: String, required: true },
+  gender: { type: String, required: true },
+  code: { type: String, required: true },
+  degree: { type: String, required: true },
+  mode: { type: String, required: true },
+  course: { type: String, required: true },
+  department: { type: String, required: true },
+  regulation: { type: String, required: true },
+  aBatch: { type: String, default: '' },
+  inAdmissionDate: { type: String, default: '' },
+  outLeavingDate: { type: String, default: '' },
+  status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
+  fatherName: { type: String, default: '' },
+  motherName: { type: String, default: '' },
+  community: { type: String, default: '' },
+  address1: { type: String, default: '' },
+  address2: { type: String, default: '' },
+  city: { type: String, default: '' },
+  state: { type: String, default: '' },
+  pincode: { type: String, default: '' },
+  country: { type: String, default: 'India' },
+  contact1: { type: String, default: '' },
+  contact2: { type: String, default: '' },
+  emailId: { type: String, default: '' },
+  aadhaarNo: { type: String, default: '' },
+  sslc: { type: Boolean, default: false },
+  hsc: { type: Boolean, default: false },
+  tc: { type: Boolean, default: false },
+  nri: { type: Boolean, default: false },
+  migration: { type: Boolean, default: false },
+  neetAdmitCard: { type: Boolean, default: false },
+  photoUrl: { type: String, default: '' }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Student', studentSchema);

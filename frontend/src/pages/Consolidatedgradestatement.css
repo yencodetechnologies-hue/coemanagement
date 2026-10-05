@@ -1,0 +1,151 @@
+/* ConsolidatedGradeStatement.css
+   Page chrome uses the dashboard variables (font family inherited from .dashboard-container,
+   title and big numbers in var(--serif)), so dark theme works.
+   The A4 sheet (.cg-sheet) uses FIXED colours: it is paper, and the printed copy is portalled
+   into <body>, outside .dashboard-container, where the dashboard variables do not exist.
+
+   Note: dashboard.css resets font and colour on every button, input and select, so rules on
+   those elements carry the .cg-page prefix to win. */
+
+.cg-page {
+  --cg-tint: color-mix(in srgb, var(--bg) 60%, var(--card));
+  --cg-amber-bg: #fff0d9; --cg-amber-text: #9a5700;
+  display: flex; flex-direction: column; gap: 16px; min-width: 0;
+  color: var(--text);
+}
+.dashboard-container[data-theme='dark'] .cg-page { --cg-amber-bg: rgba(255, 180, 70, .16); --cg-amber-text: #ffc67a; }
+
+/* ---------- heading ---------- */
+.cg-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.cg-head h1 { margin: 0 0 4px; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.25; color: var(--text); }
+.cg-head p { margin: 0; max-width: 540px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.cg-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.cg-page .cg-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.cg-page .cg-btn:disabled { opacity: .5; cursor: not-allowed; }
+.cg-page .cg-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.cg-page .cg-btn.primary:hover:not(:disabled) { opacity: .9; }
+.dashboard-container[data-theme='dark'] .cg-page .cg-btn.primary { background: var(--gold); border-color: var(--gold); color: #101d5c; }
+
+.cg-alert { margin: 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+.cg-alert.ok { background: var(--ok-bg); color: var(--ok-text); }
+.cg-alert.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- summary cards ---------- */
+.cg-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.cg-stat { display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.cg-stat-label { font-size: 12px; color: var(--muted); }
+.cg-stat-value { font-family: var(--serif); font-size: 24px; font-weight: 700; line-height: 1.35; }
+.cg-stat-note { font-size: 11px; color: var(--muted); }
+
+/* ---------- card + filters ---------- */
+.cg-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.cg-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 10px; padding: 14px 18px; background: var(--cg-tint); border-bottom: 1px solid var(--line); }
+.cg-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--muted); }
+.cg-page .cg-field select {
+  height: 34px; width: 148px; padding: 0 8px 0 10px; font-size: 13px; font-weight: 400; cursor: pointer;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.cg-page .cg-field.wide select { width: 260px; }
+
+.cg-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 9px 18px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line); }
+.cg-pill { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.cg-pill.warn { background: var(--cg-amber-bg); color: var(--cg-amber-text); }
+.cg-pill.ok { background: var(--ok-bg); color: var(--ok-text); }
+
+/* grey desk behind the paper */
+.cg-preview { margin: 16px; padding: 14px; overflow-x: auto; border-radius: 8px; background: color-mix(in srgb, var(--muted) 16%, var(--card)); }
+.cg-empty { margin: 0; padding: 40px 20px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* =====================================================================
+   THE A4 SHEET (fixed colours, same on screen and on paper)
+   ===================================================================== */
+.cg-sheet {
+  box-sizing: border-box; width: 210mm; min-height: 297mm; margin: 0 auto; padding: 14mm 11mm 12mm;
+  display: flex; flex-direction: column;
+  background: #fff; color: #1a2148;
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-size: 10.5px; line-height: 1.4;
+  box-shadow: 0 1px 4px rgba(16, 29, 92, .18);
+}
+.cg-sheet *, .cg-sheet *::before, .cg-sheet *::after { box-sizing: border-box; }
+
+.cg-header { display: flex; align-items: center; gap: 12px; }
+.cg-logo {
+  flex: none; width: 58px; height: 58px; display: grid; place-items: center; text-align: center;
+  border: 1.5px solid #1a2148; border-radius: 50%; font-size: 10px; font-weight: 700; line-height: 1.1;
+}
+.cg-head-text { flex: 1; padding-right: 70px; text-align: center; }
+.cg-head-text h1 { margin: 0 0 3px; font-size: 15px; font-weight: 700; line-height: 1.35; text-transform: uppercase; letter-spacing: .01em; }
+.cg-head-text p { margin: 0; font-size: 8.5px; font-weight: 600; }
+.cg-title { margin: 8px 0 6px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; }
+.cg-rule { margin: 0; border: 0; border-top: 1.5px solid #1a2148; }
+
+.cg-serial { margin: 6px 0 0; text-align: right; font-size: 10px; font-weight: 700; color: #b42318; }
+.cg-serial.pending { font-weight: 600; font-style: italic; color: #8a90ab; }
+
+.cg-box { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 18px; margin: 6px 0 10px; padding: 8px 10px; border: 1px solid #1a2148; }
+.cg-pair { display: flex; gap: 6px; min-width: 0; }
+.cg-pair span { flex: none; width: 118px; }
+.cg-pair b { font-weight: 700; }
+.cg-pair em { font-style: normal; font-weight: 600; }
+
+.cg-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.cg-table th, .cg-table td { padding: 3px 5px; border: 1px solid #1a2148; vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+.cg-table th { font-size: 9px; font-weight: 700; text-align: center; vertical-align: middle; line-height: 1.25; overflow-wrap: normal; }
+.cg-table td { font-size: 9.5px; }
+.cg-table td.c { text-align: center; }
+.cg-table td b { font-weight: 700; }
+.cg-table thead { display: table-header-group; }
+.cg-table tr { break-inside: avoid; }
+.cg-table tr.cg-sem td { background: #eef0f8; font-size: 9.5px; font-weight: 700; }
+.cg-table tr.cg-sem td span:last-child { float: right; letter-spacing: 0; }
+.cg-table tr.cg-sem { break-after: avoid; }
+
+.cg-note { margin: 6px 0 0; font-size: 8.5px; color: #2a3a9a; }
+
+.cg-cgpa { display: flex; flex-direction: column; gap: 3px; margin-top: 12px; padding: 7px 10px; border: 1px dashed #1a2148; font-size: 10px; break-inside: avoid; }
+.cg-cgpa b { font-weight: 700; }
+
+.cg-footer { display: flex; justify-content: space-between; margin-top: auto; padding-top: 44px; break-inside: avoid; }
+.cg-sign { display: flex; flex-direction: column; align-items: center; width: 170px; }
+.cg-sign i { display: block; min-height: 15px; font-style: normal; font-weight: 600; }
+.cg-sign span { width: 100%; padding-top: 4px; border-top: 1px solid #1a2148; text-align: center; font-weight: 700; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .cg-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .cg-head { align-items: flex-start; }
+  .cg-actions { width: 100%; }
+  .cg-actions .cg-btn { flex: 1; }
+  .cg-field { flex: 1 1 calc(50% - 5px); }
+  .cg-field.wide { flex: 1 1 100%; }
+  .cg-page .cg-field select, .cg-page .cg-field.wide select { width: 100%; }
+  .cg-preview { margin: 10px; padding: 8px; }
+}
+@media (max-width: 480px) {
+  .cg-stats { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   PRINT: only the portalled copy is printed
+   ===================================================================== */
+.print-root { display: none; }
+
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+
+  body { background: #fff !important; }
+  body > *:not(.print-root) { display: none !important; }
+  .print-root { display: block; }
+
+  .cg-print .cg-sheet {
+    width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}

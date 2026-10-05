@@ -1,0 +1,219 @@
+/* ApplicationHallTicket.css */
+
+/* ================= Screen ================= */
+.ahp-page {
+  display: flex; flex-direction: column; gap: 24px;
+  font-family: 'Public Sans', system-ui, sans-serif;
+  color: var(--text);
+}
+.ahp-page *, .ahp-page *::before, .ahp-page *::after { box-sizing: border-box; }
+.ahp-page button, .ahp-page input, .ahp-page select { font: inherit; color: inherit; }
+.ahp-page button:focus-visible,
+.ahp-page input:focus-visible,
+.ahp-page select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.ahp-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.ahp-head h2 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin: 0; }
+.ahp-head p { margin: 4px 0 0; font-size: 13px; color: var(--muted); max-width: 640px; }
+.ahp-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Buttons */
+.ahp-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 14px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+}
+.ahp-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.ahp-btn:disabled { opacity: .55; cursor: not-allowed; }
+.ahp-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff !important; }
+.ahp-btn.primary:hover:not(:disabled) { opacity: .9; }
+.dashboard-container[data-theme='dark'] .ahp-btn.primary {
+  background: var(--gold); border-color: var(--gold); color: #101d5c !important;
+}
+
+/* Toast message */
+.ahp-msg { padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+.ahp-msg.success { background: var(--ok-bg); color: var(--ok-text); }
+.ahp-msg.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* Cards */
+.ahp-card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden;
+}
+.ahp-card-title { font-family: var(--serif); font-size: 16px; font-weight: 600; padding: 16px 20px; margin: 0; }
+.ahp-card-title.nopad { padding: 0; }
+.ahp-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; padding: 16px 20px;
+}
+.ahp-muted { font-size: 12px; color: var(--muted); }
+
+/* Filters */
+.ahp-filters {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px 18px;
+  padding: 20px; border-top: 1px solid var(--line);
+}
+.ahp-filters label, .ahp-form label, .ahp-addon label {
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--muted);
+}
+.ahp-page input[type='text'],
+.ahp-page input[type='number'],
+.ahp-page input[type='date'],
+.ahp-page select {
+  width: 100%; height: 36px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: var(--field); color: var(--text);
+  font-size: 13px; font-weight: 400;
+}
+.ahp-page select { padding: 0 8px; cursor: pointer; }
+
+/* Info strip */
+.ahp-info {
+  display: flex; flex-wrap: wrap; gap: 8px 24px;
+  padding: 14px 20px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+}
+.ahp-info b { color: var(--text); font-weight: 600; margin-left: 4px; }
+
+.ahp-addon { padding: 20px; border-top: 1px solid var(--line); max-width: 560px; }
+
+/* Layout */
+.ahp-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; align-items: start; }
+
+.ahp-form {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 18px;
+  padding: 20px; border-top: 1px solid var(--line);
+}
+.ahp-form-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; padding: 16px 20px; border-top: 1px solid var(--line);
+}
+.ahp-check { flex-direction: row !important; align-items: center; gap: 8px !important; font-weight: 500 !important; color: var(--text) !important; font-size: 13px !important; cursor: pointer; }
+.ahp-page input[type='checkbox'] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+
+/* Candidates table */
+.ahp-scroll { overflow: auto; max-height: 620px; border-top: 1px solid var(--line); }
+.ahp-table { width: 100%; border-collapse: collapse; text-align: left; }
+.ahp-table th {
+  position: sticky; top: 0; z-index: 1;
+  padding: 12px 20px; font-size: 11px; font-weight: 600; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.ahp-table td { padding: 10px 20px; font-size: 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ahp-table tbody tr:last-child td { border-bottom: 0; }
+.ahp-table .num { text-align: right; }
+.ahp-table .ahp-empty { text-align: center; color: var(--muted); padding: 40px 24px; }
+.ahp-papers { margin-top: 2px; font-size: 11px; color: var(--muted); }
+.ahp-remark { margin-top: 2px; font-size: 11px; font-weight: 600; color: var(--bad-text); }
+
+/* Hall ticket status pills */
+.ahp-page .pill {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.ahp-page .pill.issued { background: var(--ok-bg); color: var(--ok-text); }
+.ahp-page .pill.blocked { background: var(--bad-bg); color: var(--bad-text); }
+.ahp-page .pill.pending { background: rgba(31, 58, 158, .1); color: var(--accent); }
+
+/* ================= Print sheet (rendered in <body> via portal) ================= */
+.print-root.ah-sheet {
+  display: none;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 12px; line-height: 1.4;
+  background: #fff; color: #000;
+}
+.ah-sheet *, .ah-sheet *::before, .ah-sheet *::after { box-sizing: border-box; }
+
+.ah-page { padding: 0; page-break-after: always; break-after: page; }
+.ah-page:last-child { page-break-after: auto; break-after: auto; }
+
+.ah-header { display: flex; align-items: center; gap: 16px; }
+.ah-logo {
+  width: 64px; height: 64px; flex: none; border-radius: 50%;
+  border: 2px solid #101d5c; color: #101d5c;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px; text-align: center;
+}
+.ah-head-text { flex: 1; text-align: center; }
+.ah-head-text h1 { font-size: 18px; font-weight: 700; margin: 0; text-transform: uppercase; }
+.ah-head-text h3 { font-size: 14px; font-weight: 700; margin: 6px 0 0; }
+.ah-head-text p { margin: 2px 0 0; font-size: 11px; }
+
+.ah-title { text-align: center; font-size: 15px; font-weight: 700; letter-spacing: .06em; margin: 14px 0 4px; }
+.ah-sub { text-align: center; font-size: 12px; margin: 0 0 4px; }
+.ah-rule { border: 0; border-top: 1.5px solid #000; margin: 6px 0 12px; }
+
+.ah-meta {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px;
+  border: 1px solid #000; padding: 8px 12px; margin-bottom: 12px; flex: 1;
+}
+.ah-meta div { display: flex; gap: 8px; }
+.ah-meta span { min-width: 96px; color: #333; }
+.ah-meta span::after { content: ' :'; }
+.ah-meta b { font-weight: 600; }
+
+.ah-ht-top { display: flex; align-items: stretch; gap: 14px; }
+.ah-ht-top .ah-meta { margin-bottom: 12px; }
+.ah-photo {
+  width: 96px; flex: none; margin-bottom: 12px;
+  border: 1px solid #000; display: grid; place-items: center;
+  font-size: 11px; color: #666; overflow: hidden;
+}
+.ah-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.ah-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+.ah-table th, .ah-table td { border: 1px solid #000; padding: 5px 6px; font-size: 11.5px; }
+.ah-table th { font-weight: 700; text-align: center; background: #f1f1f1; }
+.ah-table td.c { text-align: center; }
+.ah-table td.r { text-align: right; }
+.ah-fee { width: 60%; margin-left: auto; }
+.ah-fee .total td { font-weight: 700; background: #f1f1f1; }
+
+.ah-note { font-size: 11.5px; margin: 6px 0; }
+
+.ah-footer { display: flex; justify-content: space-between; margin-top: 56px; }
+.ah-sign span {
+  display: inline-block; border-top: 1px solid #000; padding-top: 4px;
+  min-width: 160px; text-align: center; font-weight: 600;
+}
+.ah-sign.right { text-align: right; }
+
+/* ================= Responsive ================= */
+@media (max-width: 1200px) {
+  .ahp-filters { grid-template-columns: repeat(3, 1fr); }
+  .ahp-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .ahp-filters, .ahp-form { grid-template-columns: 1fr; }
+  .ahp-actions { width: 100%; }
+}
+
+/* ================= Print ================= */
+@media print {
+  @page { size: A4; margin: 12mm; }
+
+  /* hide the whole app, show only the portal sheet */
+  body > *:not(.print-root) { display: none !important; }
+  body { background: #fff !important; }
+
+  .print-root.ah-sheet {
+    display: block !important;
+    position: static !important;
+    visibility: visible !important;
+    width: 100%; max-width: none; padding: 0; border: 0;
+  }
+  .print-root.ah-sheet * { visibility: visible !important; }
+  .ah-table th, .ah-fee .total td {
+    background: #f1f1f1 !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .ah-table tr { page-break-inside: avoid; }
+}

@@ -1,0 +1,161 @@
+/* TheoryTimeTable.css
+   On-screen styles use the dashboard.css variables (--card, --line, --text, --muted,
+   --navy, --gold, --accent, --ok-*, --bad-*, --serif), so light / dark theme follow
+   the dashboard automatically. */
+
+/* ---------- page ---------- */
+.ttp-page { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+.ttp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.ttp-head h2 { margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 600; }
+.ttp-head p { margin: 4px 0 0; max-width: 640px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+/* ---------- buttons ----------
+   (.ttp-page prefix: dashboard.css resets font / colour on every button, input and select,
+   so these rules need the extra class to win) */
+.ttp-page .ttp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex: none;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 500; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+}
+.ttp-page .ttp-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.ttp-page .ttp-btn:disabled { opacity: .55; cursor: not-allowed; }
+.ttp-page .ttp-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.ttp-page .ttp-btn.primary:hover:not(:disabled) { opacity: .9; color: #fff; border-color: var(--navy); }
+.dashboard-container[data-theme='dark'] .ttp-btn.primary,
+.dashboard-container[data-theme='dark'] .ttp-btn.primary:hover:not(:disabled) {
+  background: var(--gold); border-color: var(--gold); color: #101d5c;
+}
+
+.ttp-page .ttp-link { padding: 4px 6px; background: none; border: 0; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--accent); cursor: pointer; }
+.ttp-page .ttp-link.danger { color: var(--bad-text); }
+.ttp-page .ttp-link.danger:hover { background: var(--bad-bg); }
+
+/* ---------- message ---------- */
+.ttp-msg { padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+.ttp-msg.success { background: var(--ok-bg); color: var(--ok-text); }
+.ttp-msg.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- layout: saved list | editor ---------- */
+.ttp-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
+.ttp-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.ttp-card-title { margin: 0; padding: 16px 20px; font-family: var(--serif); font-size: 16px; font-weight: 600; }
+
+/* ---------- filters ---------- */
+.ttp-filters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 18px; padding: 20px; }
+.ttp-filters label { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ttp-filters label > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.ttp-page .ttp-filters select,
+.ttp-page .ttp-table input,
+.ttp-page .ttp-table select {
+  height: 36px; padding: 0 12px; font-size: 13px;
+  background: var(--field); border: 1px solid var(--line); border-radius: 8px;
+}
+.ttp-filters select { width: 100%; padding-right: 8px; cursor: pointer; }
+
+/* ---------- info strip ---------- */
+.ttp-info {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 12px 20px;
+  font-size: 12px; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  border-top: 1px solid var(--line);
+}
+.ttp-info b { margin-left: 4px; font-weight: 600; color: var(--text); }
+
+/* ---------- tables ---------- */
+.ttp-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+.ttp-table { width: 100%; border-collapse: collapse; text-align: left; }
+.ttp-table th {
+  padding: 12px 20px; font-size: 11px; font-weight: 600; color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 60%, var(--card));
+  border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.ttp-table td { padding: 10px 20px; font-size: 13px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.ttp-table tbody tr:last-child td { border-bottom: 0; }
+.ttp-table td b { font-weight: 600; }
+.ttp-table td:first-child { white-space: nowrap; }
+.ttp-table input[type='date'] { width: 150px; }
+.ttp-table select { width: 76px; padding-right: 6px; cursor: pointer; }
+.dashboard-container[data-theme='dark'] .ttp-table input[type='date'] { color-scheme: dark; }
+.ttp-empty { padding: 40px 24px !important; text-align: center; color: var(--muted); }
+
+/* saved list: 7 columns in the narrow card, so tighter cells */
+.ttp-saved th, .ttp-saved td { padding-left: 12px; padding-right: 12px; }
+.ttp-saved th:first-child, .ttp-saved td:first-child { padding-left: 20px; }
+.ttp-saved td { white-space: nowrap; }
+.ttp-saved td:last-child { text-align: right; padding-right: 14px; }
+.ttp-table tr.clickable { cursor: pointer; }
+.ttp-table tr.clickable:hover td { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+
+/* papers sharing the same date + session */
+.ttp-table tr.clash td { background: var(--bad-bg); }
+.ttp-table tr.clash td:first-child { box-shadow: inset 3px 0 0 var(--bad-text); }
+
+/* ---------- save bar ---------- */
+.ttp-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; padding: 14px 20px; border-top: 1px solid var(--line); }
+.ttp-warn { margin-right: auto; font-size: 12px; font-weight: 600; color: var(--bad-text); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1200px) {
+  .ttp-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .ttp-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ttp-head .ttp-btn { width: 100%; }
+  .ttp-toolbar .ttp-btn { flex: 1; }
+}
+@media (max-width: 480px) {
+  .ttp-filters { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   PRINT SHEET
+   The sheet is portalled into <body>, OUTSIDE .dashboard-container, so the
+   dashboard variables do not exist there. Print colours are fixed (black on white).
+   ===================================================================== */
+.print-root { display: none; }
+
+@media print {
+  @page { size: A4 portrait; margin: 14mm; }
+
+  body { background: #fff !important; }
+  body > *:not(.print-root) { display: none !important; }
+  .print-root { display: block; }
+
+  .tt-sheet {
+    color: #000; background: #fff;
+    font-family: 'Public Sans', system-ui, sans-serif; font-size: 12px; line-height: 1.4;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .tt-header { display: flex; align-items: center; gap: 16px; }
+  .tt-logo {
+    flex: none; width: 64px; height: 64px; border: 2px solid #000; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; font-weight: 700;
+  }
+  .tt-head-text { flex: 1; text-align: center; padding-right: 80px; /* balances the logo so text is centred */ }
+  .tt-head-text h1 { margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; font-weight: 700; }
+  .tt-head-text p { margin: 1px 0 0; font-size: 11px; }
+  .tt-head-text h3 { margin: 6px 0 0; font-size: 14px; font-weight: 700; }
+
+  .tt-title { margin: 16px 0 8px; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; font-weight: 700; }
+  .tt-rule { margin: 0 0 12px; border: 0; border-top: 1.5px solid #000; }
+
+  .tt-meta { display: flex; justify-content: space-between; gap: 24px; margin-bottom: 12px; }
+  .tt-meta-col { display: flex; flex-direction: column; gap: 4px; }
+  .tt-meta-col > div { display: flex; gap: 8px; }
+  .tt-meta-col span { min-width: 76px; }
+  .tt-meta-col span::after { content: ' :'; }
+  .tt-meta-col b { font-weight: 700; }
+
+  .tt-table { width: 100%; border-collapse: collapse; }
+  .tt-table th, .tt-table td { padding: 7px 8px; border: 1px solid #000; font-size: 12px; text-align: left; }
+  .tt-table th { font-weight: 700; text-align: center; background: #eee; }
+  .tt-table td.c { text-align: center; }
+  .tt-table thead { display: table-header-group; } /* repeat the header on every page */
+  .tt-table tr { break-inside: avoid; }
+
+  .tt-footer { display: flex; justify-content: space-between; margin-top: 70px; break-inside: avoid; }
+  .tt-sign span { display: inline-block; min-width: 200px; padding-top: 6px; border-top: 1px solid #000; text-align: center; font-weight: 600; }
+}

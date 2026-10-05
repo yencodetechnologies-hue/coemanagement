@@ -1,0 +1,137 @@
+/* ExamBarcode.css — Bar code mapping page.
+   Matched to the reference screenshot: dashboard font family (inherited 'Public Sans',
+   title in var(--serif)), dashboard colours via variables, compact 36px fields and
+   34px buttons, tinted first filter row, white subject row and info strip.
+
+   Note: dashboard.css resets font and colour on every button, input and select
+   (".dashboard-container button { font: inherit; color: inherit }"), so rules on those
+   elements carry the .eb-page prefix to win. */
+
+.eb-page {
+  --eb-tint: color-mix(in srgb, var(--bg) 60%, var(--card)); /* same tint as the dashboard table header */
+  --eb-amber-bg: #fff0d9; --eb-amber-text: #9a5700;           /* dashboard.css has no amber variable */
+  display: flex; flex-direction: column; gap: 20px; min-width: 0;
+  color: var(--text);
+}
+.dashboard-container[data-theme='dark'] .eb-page { --eb-amber-bg: rgba(255, 180, 70, .16); --eb-amber-text: #ffc67a; }
+
+/* ---------- heading: title + subtitle left, buttons bottom-right ---------- */
+.eb-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.eb-head h1 { margin: 0 0 4px; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1.25; color: var(--text); }
+.eb-head p { margin: 0; max-width: 720px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.eb-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- buttons ---------- */
+.eb-page .eb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.eb-page .eb-btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.eb-page .eb-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.eb-page .eb-btn.primary:hover:not(:disabled) { opacity: .9; }
+.dashboard-container[data-theme='dark'] .eb-page .eb-btn.primary { background: var(--gold); border-color: var(--gold); color: #101d5c; }
+
+.eb-page .eb-btn.outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+
+.eb-page .eb-btn.danger-outline { background: var(--card); border-color: var(--bad-text); color: var(--bad-text); }
+.eb-page .eb-btn.danger-outline:hover:not(:disabled) { background: var(--bad-bg); }
+
+/* ---------- alert ---------- */
+.eb-alert { margin: 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+.eb-alert.ok { background: var(--ok-bg); color: var(--ok-text); }
+.eb-alert.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- card ---------- */
+.eb-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+
+/* filter rows: first row tinted, subject row white */
+.eb-filters {
+  position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 13px;
+  padding: 15px 20px 13px; background: var(--eb-tint); border-bottom: 1px solid var(--line);
+}
+.eb-filters.eb-subject { background: var(--card); padding-right: 130px; /* room for the stamp */ }
+
+.eb-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--muted); }
+.eb-page .eb-field select,
+.eb-page .eb-field input {
+  height: 36px; width: 147px; padding: 0 10px; font-size: 14px; font-weight: 400;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.eb-page .eb-field select { padding-right: 8px; cursor: pointer; }
+.eb-page .eb-field select.wide { width: 260px; }
+.eb-page .eb-field input[readonly] { background: var(--eb-tint); color: var(--muted); }
+
+/* DRAFT / VERIFIED stamp */
+.eb-stamp {
+  position: absolute; right: 20px; bottom: 18px; padding: 3px 12px;
+  border: 2px solid var(--bad-text); border-radius: 6px; color: var(--bad-text);
+  font-family: var(--serif); font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  transform: rotate(3deg);
+}
+.eb-stamp.verified { border-color: var(--ok-text); color: var(--ok-text); }
+
+/* ---------- info strip (white) ---------- */
+.eb-info {
+  display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 9px 20px;
+  font-size: 13px; line-height: 1.5; color: var(--muted);
+  background: var(--card); border-bottom: 1px solid var(--line);
+}
+.eb-info b { margin-left: 0; font-weight: 700; color: var(--text); }
+
+/* ---------- table ---------- */
+.eb-table-wrap { overflow-x: auto; background: var(--card); }
+.eb-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.eb-table th {
+  padding: 11px 20px; text-align: left; font-size: 12px; font-weight: 600; color: var(--muted);
+  background: var(--eb-tint); border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.eb-table td { padding: 11px 20px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.eb-table td b { font-weight: 700; }
+.eb-table tr:last-child td { border-bottom: 0; }
+.eb-table .num { text-align: right; }
+.eb-table .muted { color: var(--muted); }
+.eb-empty { padding: 44px 20px !important; text-align: center; font-size: 14px; color: var(--muted); }
+
+/* manual entry: note above the table and the barcode box in each row */
+.eb-manual-bar { padding: 10px 20px; font-size: 13px; color: var(--muted); background: var(--eb-amber-bg); border-bottom: 1px solid var(--line); }
+.eb-manual-bar b { color: var(--eb-amber-text); }
+.eb-manual-bar span { margin-left: 8px; font-weight: 600; color: var(--text); }
+.eb-page .eb-code {
+  height: 34px; width: 190px; padding: 0 10px; font-size: 14px; font-weight: 600; letter-spacing: .03em;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.eb-page .eb-code.bad { border-color: var(--bad-text); background: var(--bad-bg); }
+.eb-page .eb-field select:disabled { opacity: .6; cursor: not-allowed; }
+
+/* evaluator dropdown inside the table (re-bundle page) */
+.eb-page .eb-eval {
+  height: 36px; min-width: 220px; padding: 0 8px 0 12px; font-size: 14px; cursor: pointer;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+
+/* status pills */
+.eb-pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.eb-pill.done { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.eb-pill.progress { background: var(--eb-amber-bg); color: var(--eb-amber-text); }
+.eb-pill.pending { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+
+/* ---------- footer ---------- */
+.eb-foot { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 12px 20px; background: var(--card); border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.eb-warn { font-weight: 600; color: var(--eb-amber-text); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .eb-head { align-items: flex-start; }
+  .eb-actions { width: 100%; }
+  .eb-actions .eb-btn { flex: 1; }
+  .eb-filters.eb-subject { padding-right: 20px; }
+  .eb-field { flex: 1 1 100%; }
+  .eb-page .eb-field select,
+  .eb-page .eb-field input,
+  .eb-page .eb-field select.wide { width: 100%; }
+  .eb-stamp { position: static; align-self: flex-end; }
+  .eb-table th, .eb-table td { padding-left: 12px; padding-right: 12px; }
+  .eb-page .eb-eval { min-width: 180px; }
+}

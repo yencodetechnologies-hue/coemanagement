@@ -1,0 +1,281 @@
+/* =========================================================
+   GLOBAL BODY BACKGROUND
+   ========================================================= */
+body {
+  margin: 0;
+  padding: 0;
+  /* Deep blue background moved to body */
+  background: linear-gradient(135deg, #0b1656 0%, #070d36 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =========================================================
+   WRAPPER + ANIMATED BOKEH BACKGROUND
+   ========================================================= */
+.lg-wrapper {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  position: relative;
+  /* Background removed from here */
+}
+
+.lg-bokeh-container {
+  /* Changed to fixed and z-index -1 to act as a global background */
+  position: fixed;
+  inset: 0;
+  z-index: -1; 
+  overflow: hidden;
+  pointer-events: none; /* Prevents bubbles from blocking clicks */
+}
+
+.lg-bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  will-change: transform;
+  animation: float-up 15s infinite linear;
+}
+
+.lg-bokeh-1 { width: 120px; height: 120px; left: 15%; bottom: -120px; animation-duration: 22s; }
+.lg-bokeh-2 { width: 80px; height: 80px; left: 35%; bottom: -80px; animation-duration: 18s; animation-delay: 2s; }
+.lg-bokeh-3 { width: 150px; height: 150px; left: 65%; bottom: -150px; animation-duration: 25s; animation-delay: 5s; }
+.lg-bokeh-4 { width: 60px; height: 60px; left: 80%; bottom: -60px; animation-duration: 16s; animation-delay: 1s; }
+.lg-bokeh-5 { width: 90px; height: 90px; left: 50%; bottom: -90px; animation-duration: 20s; animation-delay: 7s; }
+.lg-bokeh-6 { width: 110px; height: 110px; left: 5%; bottom: -110px; animation-duration: 24s; animation-delay: 10s; }
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.lg-card {
+  width: min(350px, 100%);
+  background: rgba(11, 22, 86, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border-bottom: 3px solid #dfae3d;
+  padding: 3rem 2.5rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(223, 174, 61, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+.lg-brand {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.lg-brand h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+.lg-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* =========================================================
+   FORM 
+   ========================================================= */
+.lg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.lg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lg-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #dfae3d;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.lg-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lg-input-box input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: none;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  outline: none;
+}
+
+.lg-input-box input::placeholder {
+  color: #999;
+}
+
+.lg-input-box input:focus {
+  box-shadow: 0 0 0 2px #dfae3d;
+}
+
+.lg-eye {
+  position: absolute;
+  right: 0.75rem;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  z-index: 2;
+}
+
+.lg-eye:hover {
+  color: #333;
+}
+
+/* =========================================================
+   ROW: remember + forgot
+   ========================================================= */
+.lg-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -0.5rem;
+}
+
+.lg-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lg-checkbox input {
+  display: none;
+}
+
+.lg-checkbox-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #dfae3d;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lg-checkbox input:checked ~ .lg-checkbox-box {
+  background: #dfae3d;
+}
+
+.lg-checkbox-box::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #0b1656;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+}
+
+.lg-checkbox input:checked ~ .lg-checkbox-box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.lg-link {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lg-link:hover {
+  color: #dfae3d;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+.lg-submit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.lg-submit {
+  background: #dfae3d;
+  color: #0b1656;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.lg-submit:hover:not(:disabled) {
+  background: #eab84d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(223, 174, 61, 0.3);
+}
+
+.lg-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.lg-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 460px) {
+  .lg-card {
+    padding: 2.25rem 1.5rem;
+  }
+}

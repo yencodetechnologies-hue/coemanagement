@@ -1,0 +1,120 @@
+/* ResultProcessing.css
+   Font family is inherited from .dashboard-container ('Public Sans'); titles and big
+   numbers use var(--serif). Colours come from the dashboard variables, so dark theme works.
+
+   Note: dashboard.css resets font and colour on every button, input and select
+   (".dashboard-container button { font: inherit; color: inherit }"), so rules on those
+   elements carry the .rp-page prefix to win. */
+
+.rp-page {
+  --rp-tint: color-mix(in srgb, var(--bg) 60%, var(--card)); /* same tint as the dashboard table header */
+  --rp-amber-bg: #fff0d9; --rp-amber-text: #9a5700;           /* dashboard.css has no amber variable */
+  display: flex; flex-direction: column; gap: 16px; min-width: 0;
+  color: var(--text);
+}
+.dashboard-container[data-theme='dark'] .rp-page { --rp-amber-bg: rgba(255, 180, 70, .16); --rp-amber-text: #ffc67a; }
+
+/* ---------- heading: title + subtitle left, buttons bottom-right ---------- */
+.rp-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.rp-head h1 { margin: 0 0 4px; font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.25; color: var(--text); }
+.rp-head p { margin: 0; max-width: 560px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.rp-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---------- buttons ---------- */
+.rp-page .rp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 34px; padding: 0 14px; font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+.rp-page .rp-btn.small { height: 28px; padding: 0 10px; font-size: 12px; }
+.rp-page .rp-btn:disabled { opacity: .5; cursor: not-allowed; }
+.rp-page .rp-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.rp-page .rp-btn.primary:hover:not(:disabled) { opacity: .9; }
+.dashboard-container[data-theme='dark'] .rp-page .rp-btn.primary { background: var(--gold); border-color: var(--gold); color: #101d5c; }
+.rp-page .rp-btn.outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.rp-page .rp-btn.danger-outline { border-color: var(--bad-text); color: var(--bad-text); }
+.rp-page .rp-btn.danger-outline:hover:not(:disabled) { background: var(--bad-bg); }
+
+/* ---------- alert ---------- */
+.rp-alert { margin: 0; padding: 10px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+.rp-alert.ok { background: var(--ok-bg); color: var(--ok-text); }
+.rp-alert.error { background: var(--bad-bg); color: var(--bad-text); }
+
+/* ---------- summary cards ---------- */
+.rp-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.rp-stat { display: flex; flex-direction: column; gap: 2px; padding: 16px 16px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.rp-stat-label { font-size: 12px; color: var(--muted); }
+.rp-stat-value { font-family: var(--serif); font-size: 24px; font-weight: 700; line-height: 1.35; }
+.rp-stat-note { font-size: 11px; color: var(--accent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rp-stat-note.warn { color: var(--rp-amber-text); font-weight: 600; }
+
+/* ---------- card ---------- */
+.rp-card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.rp-card-title { margin: 0; padding: 16px 18px; font-family: var(--serif); font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--line); }
+
+.rp-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 10px; padding: 14px 18px; background: var(--rp-tint); border-bottom: 1px solid var(--line); }
+.rp-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--muted); }
+.rp-page .rp-field select {
+  height: 34px; width: 140px; padding: 0 8px 0 10px; font-size: 13px; font-weight: 400; cursor: pointer;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px; color: var(--text);
+}
+
+.rp-info { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 10px 18px; font-size: 12px; line-height: 1.5; color: var(--muted); background: var(--card); border-bottom: 1px solid var(--line); }
+.rp-info b { font-weight: 700; color: var(--text); }
+.rp-info b.ok { color: var(--ok-text); }
+
+/* ---------- table ---------- */
+.rp-table-wrap { overflow-x: auto; }
+.rp-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.rp-table th {
+  padding: 11px 14px; font-size: 11px; font-weight: 600; color: var(--muted);
+  background: var(--rp-tint); border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.rp-table td { padding: 8px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; white-space: nowrap; }
+.rp-table tbody tr:last-child td { border-bottom: 0; }
+.rp-table td b { font-weight: 700; }
+.rp-table .c { text-align: center; }
+.rp-table .r { text-align: right; }
+.rp-empty { padding: 40px 20px !important; text-align: center; white-space: normal !important; color: var(--muted); }
+
+/* grade chip */
+.rp-grade { display: inline-block; min-width: 28px; padding: 2px 7px; border-radius: 5px; font-size: 11px; font-weight: 700; text-align: center; cursor: default; }
+.rp-grade.ok { background: color-mix(in srgb, var(--accent) 11%, transparent); color: var(--accent); }
+.rp-grade.fail { background: var(--bad-bg); color: var(--bad-text); }
+.rp-grade.na { background: color-mix(in srgb, var(--muted) 12%, transparent); color: var(--muted); }
+.rp-grade.pending { background: var(--rp-amber-bg); color: var(--rp-amber-text); }
+
+/* result pill */
+.rp-pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.rp-pill.pass { background: var(--ok-bg); color: var(--ok-text); }
+.rp-pill.ra { background: var(--bad-bg); color: var(--bad-text); }
+.rp-pill.pending { background: var(--rp-amber-bg); color: var(--rp-amber-text); }
+
+.rp-foot { padding: 11px 18px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+.rp-warn { font-weight: 600; color: var(--rp-amber-text); }
+.rp-muted { font-size: 13px; color: var(--muted); }
+
+/* ---------- grading scale ---------- */
+.rp-scale { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 18px 18px; }
+.rp-scale-item { display: flex; flex-direction: column; gap: 3px; width: 112px; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: 8px; }
+.rp-scale-desc { font-size: 12px; color: var(--muted); }
+.rp-scale-grade { font-size: 11px; font-weight: 700; color: var(--muted); }
+.rp-scale-grade b { margin-right: 2px; font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--text); }
+.rp-scale-min { font-size: 11px; color: var(--accent); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .rp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .rp-head { align-items: flex-start; }
+  .rp-actions { width: 100%; }
+  .rp-actions .rp-btn { flex: 1; }
+  .rp-field { flex: 1 1 calc(50% - 5px); }
+  .rp-page .rp-field select { width: 100%; }
+  .rp-scale-item { width: calc(50% - 5px); }
+}
+@media (max-width: 480px) {
+  .rp-stats { grid-template-columns: 1fr; }
+  .rp-field { flex: 1 1 100%; }
+}
