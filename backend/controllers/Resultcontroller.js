@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const Settings = () => mongoose.models.Settings || require('../models/Settings');
 const BarcodeMapping = require('../models/Barcodemapping');
 const Rebundle = require('../models/Rebundle');
-const ResultSheet = require('../models/ResultSheet');
+const ResultSheet = require('../models/Resultsheet');
 
 const ok = (res, data, code = 200) => res.status(code).json({ success: true, data });
 const fail = (res, code, message) => res.status(code).json({ success: false, message });

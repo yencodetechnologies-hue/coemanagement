@@ -4,7 +4,7 @@ const Student = require('../models/Student');
 const Course = require('../models/Course');
 const Curriculum = require('../models/Curriculum');
 const Institution = require('../models/Institution');
-const ResultSheet = require('../models/ResultSheet');
+const ResultSheet = require('../models/Resultsheet');
 const ConsolidatedStatement = require('../models/ConsolidatedStatement');
 
 // Reuse the Settings model your app already registered (requiring the file again with a
