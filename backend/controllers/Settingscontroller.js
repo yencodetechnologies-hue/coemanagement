@@ -1,4 +1,4 @@
-const Settings = require('../models/settingsModel');
+const Settings = require('../models/settingsmodel');
 
 const bad = (message, status = 400) => Object.assign(new Error(message), { status });
 const str = (v) => (typeof v === 'string' ? v.trim() : '');
