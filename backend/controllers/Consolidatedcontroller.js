@@ -5,7 +5,7 @@ const Course = require('../models/Course');
 const Curriculum = require('../models/Curriculum');
 const Institution = require('../models/Institution');
 const ResultSheet = require('../models/Resultsheet');
-const ConsolidatedStatement = require('../models/ConsolidatedStatement');
+const ConsolidatedStatement = require('../models/Consolidatedstatement');
 
 // Reuse the Settings model your app already registered (requiring the file again with a
 // different path spelling compiles it twice on Windows -> OverwriteModelError).
