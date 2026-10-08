@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Role = require('../models/Role');
 const {
   ACTIONS, ACTION_KEYS, MODULE_GROUPS, MODULE_KEYS, MODULE_NAME, DEFAULT_ROLES, normalize, blank,
-} = require('../config/permissionModules');
+} = require('../config/Permissionmodules');
 
 const ok = (res, data, code = 200) => res.status(code).json({ success: true, data });
 const fail = (res, code, message) => res.status(code).json({ success: false, message });
