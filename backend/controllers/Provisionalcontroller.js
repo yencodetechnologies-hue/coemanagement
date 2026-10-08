@@ -1,5 +1,5 @@
 const ResultSheet = require('../models/Resultsheet');
-const ProvisionalCertificate = require('../models/ProvisionalCertificate');
+const ProvisionalCertificate = require('../models/Provisionalcertificate');
 // the consolidated statement already merges every published semester result of a candidate
 const { buildStatement, courseContext, semesterNumber } = require('./Consolidatedcontroller');
 
