@@ -14,8 +14,3 @@ router.post('/withdraw', c.withdraw);  // body: the five filters
 
 module.exports = router;
 
-/*
- * In server.js / app.js, next to the barcode routes:
- *
- *   app.use('/api/results', require('./routes/resultRoutes'));
- */

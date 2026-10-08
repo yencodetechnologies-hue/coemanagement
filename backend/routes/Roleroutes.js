@@ -10,9 +10,3 @@ router.patch('/:id/permissions', c.updatePermissions); // { changes: [{ module, 
 router.delete('/:id', c.remove);
 
 module.exports = router;
-
-/*
- * In server.js, with your other routes:
- *
- *   app.use('/api/roles', require('./routes/roleRoutes'));
- */

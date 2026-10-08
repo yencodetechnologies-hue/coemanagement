@@ -49,7 +49,7 @@ app.use('/api/external-marks', require('./routes/markroutes'));
 app.use('/api/results', require('./routes/Resultroutes'));
 app.use('/api/consolidated', require('./routes/Consolidatedroutes'));
 app.use('/api/reports', require('./routes/Reportroutes'));
-app.use('/api/provisional', require('./routes/provisionalroutes'));
+app.use('/api/provisional', require('./routes/Provisionalroutes'));
 
 // read the audit log (the Audit log page)
 app.use('/api/audit-logs', require('./routes/Auditlogroutes'));

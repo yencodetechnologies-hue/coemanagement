@@ -1,14 +1,4 @@
-/**
- * Marks lock: ONE verify / unlock for all the attendance and internal marks of a batch in an
- * exam session (every semester, every subject, every sheet type, every student category).
- *
- * This file has the Verify / Unlock routes. The attendance marks controller enforces the lock
- * (it refuses edits and returns every sheet of a locked batch as VERIFIED).
- *
- * In server.js, anywhere among the routes:
- *
- *   app.use('/api/marks-lock', require('./routes/marksLock'));
- */
+
 const express = require('express');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;

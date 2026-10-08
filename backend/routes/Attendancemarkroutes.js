@@ -18,5 +18,3 @@ router.post('/sheet/:id/unlock', unlockSheet);
 
 module.exports = router;
 
-// In your server.js / app.js add:
-// app.use('/api/attendance-marks', require('./routes/attendanceMarkRoutes'));

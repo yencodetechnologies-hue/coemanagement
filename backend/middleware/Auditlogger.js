@@ -1,27 +1,6 @@
 const mongoose = require('mongoose');
 const AuditLog = require('../models/Auditlog');
 
-/**
- * Audit logger.
- *
- * Records every request that CHANGES something (POST / PUT / PATCH / DELETE):
- * which staff did it, what they did, the values they sent and, when the request addresses
- * one record by id, exactly which fields changed (before -> after).
- *
- * In server.js, right after express.json():
- *
- *   app.use(require('./middleware/Auditlogger'));   // your file name
- *
- * It also switches itself on as soon as it is loaded, so it still records everything if that
- * line ends up below the routes.
- *
- * How: it listens at the Node HTTP server, in front of Express, so it does not matter where
- * that line sits among your other routes.
- *
- * The staff comes from the "x-staff-id" header, which the frontend adds to every request
- * (components/Header.jsx). There is no login in this app, so this is the staff SELECTED in
- * the header, not a verified identity.
- */
 
 const MUTATING = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
 const SKIP_FIELDS = new Set(['_id', '__v', 'createdAt', 'updatedAt']);
